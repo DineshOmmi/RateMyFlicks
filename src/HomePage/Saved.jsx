@@ -1,3 +1,58 @@
+// import { useEffect, useState } from "react";
+// import { FaArrowLeft } from "react-icons/fa";
+// import { useNavigate } from "react-router-dom";
+// import { useAuth } from "../context/AuthContext";
+// import { doc, getDoc } from "firebase/firestore";
+// import { db } from "../config/firebase";
+
+// const Saved = () => {
+//   const [myList, setMyList] = useState([]);
+//   const [anime, setAnime] = useState([]); // Changed to array for storing multiple anime objects
+//   const navigate = useNavigate();
+//   const handleBack = () => {
+//     navigate("/home");
+//   };
+//   const { currentUser } = useAuth();
+//   const [fillColor, setFillColor] = useState('none');
+
+//   const changeFill = () => {
+//     setFillColor(prevFill => prevFill === '#b23a48' ? 'none' : '#b23a48');
+//   };
+
+//   useEffect(() => {
+//     // Fetch anime data for each ID in myList
+//     const fetchData = async () => {
+//       const animeData = await Promise.all(
+//         myList.map(async (id) => {
+//           const response = await fetch(`https://api.jikan.moe/v4/anime/${id}`);
+//           const data = await response.json();
+//           return data.data;
+//         })
+//       );
+//       setAnime(animeData); // Update anime state with fetched data
+//     };
+
+//     fetchData();
+//   }, [myList]); // Dependency on myList
+
+//   useEffect(() => {
+//     // Fetch saved data when currentUser changes
+//     const getSavedData = async (uid) => {
+//       const userRef = doc(db, "savedData", uid);
+//       try {
+//         const docSnapshot = await getDoc(userRef);
+//         if (docSnapshot.exists()) {
+//           const savedData = docSnapshot.data();
+//           setMyList(savedData.saveList); // Update myList state with saved data
+//         } else {
+//           console.log("User document does not exist");
+//         }
+//       } catch (error) {
+//         console.error("Error getting user data: ", error);
+//       }
+//     };
+//     getSavedData(currentUser.uid);
+//   }, [currentUser.uid]); // Dependency on currentUser.uid
 import { useEffect, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -7,43 +62,32 @@ import { db } from "../config/firebase";
 
 const Saved = () => {
   const [myList, setMyList] = useState([]);
-  const [anime, setAnime] = useState([]); // Changed to array for storing multiple anime objects
+  const [anime, setAnime] = useState([]);
   const navigate = useNavigate();
+  const { currentUser } = useAuth();
+  const [fillColor, setFillColor] = useState("none");
+
   const handleBack = () => {
     navigate("/home");
   };
-  const { currentUser } = useAuth();
-  const [fillColor, setFillColor] = useState('none');
 
   const changeFill = () => {
-    setFillColor(prevFill => prevFill === '#b23a48' ? 'none' : '#b23a48');
+    setFillColor((prevFill) => (prevFill === "#b23a48" ? "none" : "#b23a48"));
   };
 
   useEffect(() => {
-    // Fetch anime data for each ID in myList
-    const fetchData = async () => {
-      const animeData = await Promise.all(
-        myList.map(async (id) => {
-          const response = await fetch(`https://api.jikan.moe/v4/anime/${id}`);
-          const data = await response.json();
-          return data.data;
-        })
-      );
-      setAnime(animeData); // Update anime state with fetched data
-    };
+    if (!currentUser) {
+      console.log("User not logged in");
+      return;
+    }
 
-    fetchData();
-  }, [myList]); // Dependency on myList
-
-  useEffect(() => {
-    // Fetch saved data when currentUser changes
-    const getSavedData = async (uid) => {
-      const userRef = doc(db, "savedData", uid);
+    const getSavedData = async () => {
+      const userRef = doc(db, "savedData", currentUser.uid);
       try {
         const docSnapshot = await getDoc(userRef);
         if (docSnapshot.exists()) {
           const savedData = docSnapshot.data();
-          setMyList(savedData.saveList); // Update myList state with saved data
+          setMyList(savedData.saveList || []); // Ensure fallback to an empty array
         } else {
           console.log("User document does not exist");
         }
@@ -51,9 +95,43 @@ const Saved = () => {
         console.error("Error getting user data: ", error);
       }
     };
-    getSavedData(currentUser.uid);
-  }, [currentUser.uid]); // Dependency on currentUser.uid
 
+    getSavedData();
+  }, [currentUser]); // Ensure `currentUser` is defined before using
+
+  useEffect(() => {
+    if (myList.length === 0) return;
+
+    const fetchData = async () => {
+      try {
+        const animeData = await Promise.all(
+          myList.map(async (id) => {
+            const response = await fetch(`https://api.jikan.moe/v4/anime/${id}`);
+            const data = await response.json();
+            return data.data;
+          })
+        );
+        setAnime(animeData);
+      } catch (error) {
+        console.error("Error fetching anime data: ", error);
+      }
+    };
+
+    fetchData();
+  }, [myList]);
+  if (!currentUser) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen">
+        <p className="text-lg font-semibold">Please log in to view your saved anime list.</p>
+        <button
+          onClick={() => navigate("/login")}
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+        >
+          Go to Login
+        </button>
+      </div>
+    );
+  }
   return (
     <div className="bg-secondary h-[370vh] md:w-[1520px] w-[1400px]">
       <div

@@ -9,12 +9,13 @@ import { AuthProvider } from "./context/AuthContext";
 import { ApiProvider } from "./context/ApiContext";
 import AnimeItemPage from "./HomePage/AnimeItemPage";
 import Saved from "./HomePage/Saved";
+import NotFound from "./NotFound";
 
 const router = createBrowserRouter([
     {
       path : "/" ,
       element: <HomePage/>,
-      errorElement:<div>error element 404</div>
+      errorElement:<NotFound />
     },
     {
       path : "/home" ,
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       path : "/Saved" ,
       element: <Saved/>
     },
+    {
+      path: "*",  // This will catch all unmatched routes
+      element: <NotFound />
+    }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
