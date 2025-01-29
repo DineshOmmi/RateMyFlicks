@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { BsBookmark } from "react-icons/bs";
-import { BsBookmarkCheckFill } from "react-icons/bs";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import { BsBookmark, BsBookmarkCheckFill } from "react-icons/bs";
 import { useAuth } from "../context/AuthContext";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../config/firebase.js";
 
 const AnimeItemPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [anime, setAnime] = useState({});
   const [characters, setCharacters] = useState([]);
   const [genres, setGenres] = useState([]);
@@ -16,7 +16,7 @@ const AnimeItemPage = () => {
   const [saveList, setSaveList] = useState([]);
   const { currentUser, storeSavedData } = useAuth();
 
-  // destructure anime
+  // Destructure anime data
   const {
     title,
     synopsis,
@@ -34,79 +34,77 @@ const AnimeItemPage = () => {
     source,
   } = anime;
 
-  //get anime based on id
-  const getAnime = async (anime) => {
-    const response = await fetch(`https://api.jikan.moe/v4/anime/${anime}`);
-    const data = await response.json();
-    setAnime(data.data);
-  };
-
-  //get characters
-
-  const getCharacters = async (anime) => {
-    const response = await fetch(
-      `https://api.jikan.moe/v4/anime/${anime}/characters`
-    );
-    const data = await response.json();
-    setCharacters(data.data);
-  };
-
-  //get Genres
-
-  const getGenres = async (anime) => {
-    const response = await fetch(`https://api.jikan.moe/v4/anime/${anime}`);
-    const data = await response.json();
-    setGenres(data.data.genres);
-  };
-
-  //handle save
-  const handleSave = (id) => {
-    // Toggles the saveAnime state
-    setSaveAnime((prevSaveAnime) => !prevSaveAnime); // Use functional form for asynchronous state update
-
-    // Update saveList based on saveAnime state
-    let updatedSaveList;
-    if (!saveList.includes(id) && !saveAnime) {
-      // Check the updated state
-      updatedSaveList = [...saveList, id]; // Add to saveList
-    } else {
-      updatedSaveList = saveList.filter((savedId) => savedId !== id); // Remove from saveList
-    }
-
-    // Update saveList state and store the updated saveList
+  // Fetch anime details
+  const getAnime = async (animeId) => {
     try {
-      setSaveList(updatedSaveList);
-      storeSavedData(currentUser.uid, updatedSaveList);
-    } catch (e) {
-      console.error("Error updating and storing saved data: ", e);
+      const response = await fetch(`https://api.jikan.moe/v4/anime/${animeId}`);
+      const data = await response.json();
+      setAnime(data.data);
+      setGenres(data.data.genres || []); // Extract genres from the response
+    } catch (error) {
+      console.error("Error fetching anime:", error);
     }
+  };
+
+  // Fetch characters
+  const getCharacters = async (animeId) => {
+    try {
+      const response = await fetch(
+        `https://api.jikan.moe/v4/anime/${animeId}/characters`
+      );
+      const data = await response.json();
+      setCharacters(data.data || []);
+    } catch (error) {
+      console.error("Error fetching characters:", error);
+    }
+  };
+
+  // Handle saving anime
+  const handleSave = (animeId) => {
+    setSaveAnime((prevSaveAnime) => !prevSaveAnime);
+
+    setSaveList((prevSaveList) => {
+      const updatedSaveList = prevSaveList.includes(animeId)
+        ? prevSaveList.filter((savedId) => savedId !== animeId)
+        : [...prevSaveList, animeId];
+
+      if (currentUser) {
+        storeSavedData(currentUser.uid, updatedSaveList);
+      }
+
+      return updatedSaveList;
+    });
   };
 
   useEffect(() => {
+    if (!currentUser) {
+      navigate("/login"); // Redirect if not logged in
+      return;
+    }
+
     getAnime(id);
     getCharacters(id);
-    getGenres(id);
 
-    // display stored data
+    // Fetch saved data if user is logged in
     const getSavedData = async (uid) => {
-      const userRef = doc(db, "savedData", uid);
+      if (!uid) return;
 
       try {
+        const userRef = doc(db, "savedData", uid);
         const docSnapshot = await getDoc(userRef);
+
         if (docSnapshot.exists()) {
           const savedData = docSnapshot.data();
-          setSaveList(savedData.saveList);
-          const isSaved = savedData.saveList.includes(id);
-          setSaveAnime(isSaved);
-        } else {
-          console.log("User document does not exist");
+          setSaveList(savedData.saveList || []);
+          setSaveAnime(savedData.saveList.includes(id));
         }
       } catch (error) {
-        console.error("Error getting user data: ", error);
+        console.error("Error getting user data:", error);
       }
     };
+
     getSavedData(currentUser.uid);
-  }, []);
+  }, [id, currentUser, navigate]); // Dependencies ensure updates when `id` or `currentUser` changes
 
   return (
     <div className="bg-secondary  md:w-[1520px] w-[1400px] flex flex-col justify-center items-center">

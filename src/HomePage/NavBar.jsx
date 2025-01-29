@@ -61,13 +61,19 @@ const NavBar = () => {
     navigate("/Saved");
   };
 
-  //handle Logout
   const handleLogout = () => {
-    signOut(auth).then(() => {
-      navigate("/Login");
-    });
+    signOut(auth)
+      .then(() => {
+        localStorage.removeItem("hasLoaded"); // Reset loading state for next login
+        navigate("/Login");
+      })
+      .catch((error) => {
+        console.error("Error logging out: ", error);
+      });
   };
 
+  
+  
   // For-Flicks
   const handleMouseEnter = () => {
     SetIsOpenProfile(false);
