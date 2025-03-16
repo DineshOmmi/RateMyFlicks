@@ -17,6 +17,7 @@
 ## Overview
 
 Welcome to RateMyFlicks, a Reacj.js - based website that lets users explore and save their favorite Animes. The website uses the Jikan Database API to provide a vast collection of animes for users to discover.
+<h3>"It’s time to ditch the text file. Keep track of your anime easily by creating your own list."</h3>
 
 ## Technology Stack
 
@@ -118,7 +119,7 @@ Welcome to RateMyFlicks, a Reacj.js - based website that lets users explore and 
             <img src="https://github.com/user-attachments/assets/503b60ee-184f-4947-bebb-bfbbe2509e0c" width="100%" title="Desktop view - MyGames page"/>
         </td>
         <td>
-            <img src="https://github.com/user-attachments/assets/becd24b9-d2ad-4b08-99de-d9ba2335dc21" width="100%" title="Mobile view - MyGames page"/>
+            <img src="https://github.com/user-attachments/assets/0275f165-31f5-442b-8d18-8321c047a2cd" width="100%" title="Mobile view - MyGames page"/>
         </td>
     </tr> 
 </table>
