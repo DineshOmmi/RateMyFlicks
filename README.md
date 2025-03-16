@@ -16,69 +16,36 @@
 
 ## Overview
 
-Welcome to RateMyFlicks, a Reacj.js - based website that lets users explore and save their favorite Animes. The website uses the RAWG Video Games Database API to provide a vast collection of games for users to discover.
+Welcome to RateMyFlicks, a Reacj.js - based website that lets users explore and save their favorite Animes. The website uses the Jikan Database API to provide a vast collection of animes for users to discover.
 
 ## Technology Stack
 
-- MongoDB
-- Express
+- Firebase
+- TailwindCss
 - React
-- Node
 - HTML
 - CSS
 - JS
-- RAWG Video Games Database API
+- Jikan Anime Database API
 
 ## Getting Started
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/hemanth110702/GameStash.git
-   cd GameStash
+   git clone https://github.com/DineshOmmi/RateMyFlicks.git
+   cd RateMyFlicks
    ```
 
-2. Set up the backend:
-
-    - Navigate to the backend folder:
-    ```bash
-    cd backend
-    ```
-
-   - Create a `.env` file and add the following environment variables:
-   ```bash
-   PORT=5000
-   RAWG_API_KEY=YOUR_RAWG_API_KEY
-   SECRET=YOUR_SECRET_KEY
-   MONGODB_URL=YOUR_MONGODB_URL
-   ```
-
-3. Start the backend server:
-   ```bash
-   npm run dev
-   ```
-
-4. Set up the frontend:
-
-    - Navigate to the frontend folder:
-   ```bash
-   cd ../frontend
-   ```
-
-   - Install the necessary dependencies:
-   ```bash
-   npm install
-   ```
-
-5. Start the frontend server:
+2. Start the frontend server:
    ```bash
    npm run dev
    ```
 
 ## Features
 
-- **Game Exploration:** Browse a wide range of games sorted by genres using the sidebar.
-- **MyGames Section:** Save and manage your liked games for easy access.
+- **Anime Exploration:** Browse a wide range of anime sorted by various sections such as Popular , Airing , Upcoming and also find your desired anime in the Top Search bar.
+- **MyList Section:** Save and manage your liked animes for easy access.
 - **Responsive Design:** Enjoy a seamless experience on various devices.
 
 ## Screenshots
@@ -168,6 +135,6 @@ Welcome to RateMyFlicks, a Reacj.js - based website that lets users explore and 
 </table>
 
 ## Link
-[🚀 Live Page](https://gamestash-frontend.vercel.app/)
+[🚀 Live Page](https://ratemyflicks.netlify.app/)
 
 <p align="right"><a href="#top">⬆️ Back to Top</a></p>
