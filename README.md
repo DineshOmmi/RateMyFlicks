@@ -71,10 +71,10 @@ Welcome to RateMyFlicks, a Reacj.js - based website that lets users explore and 
     </tr>
     <tr>
         <td>
-            <img src="https://github.com/user-attachments/assets/2a9fdefe-86f2-4798-af4e-24d3b65ae338" width="100%" title="Desktop view - Login Page"/>
+            <img src="https://github.com/user-attachments/assets/5845e597-c411-41e4-96a1-0d2fac47ab69" width="100%" title="Desktop view - Login Page"/>
         </td>
         <td>
-            <img src="https://github.com/user-attachments/assets/a2eab9c5-9877-4286-9a41-e1435e23f674" width="100%" title="Mobile view - Login Page"/>
+            <img src="https://github.com/user-attachments/assets/5e15abbe-2acf-44d9-b707-3c72747654a3" width="100%" title="Mobile view - Login Page"/>
         </td>
     </tr>
     <tr>
@@ -82,10 +82,10 @@ Welcome to RateMyFlicks, a Reacj.js - based website that lets users explore and 
     </tr>
     <tr>
         <td>
-            <img src="https://github.com/user-attachments/assets/14e920a7-b330-40d7-8a0b-b86a361d3819" width="100%" title="Desktop view - Signup Page"/>
+            <img src="https://github.com/user-attachments/assets/6bfa7d33-eb67-4fb2-a232-aa1111d43b8b" width="100%" title="Desktop view - Signup Page"/>
         </td>
         <td>
-            <img src="https://github.com/user-attachments/assets/b4c631fb-bc0b-42d5-95be-1d0e336b5c5c" width="100%" title="Mobile view - Signup Page"/>
+            <img src="https://github.com/user-attachments/assets/ab152311-6216-4a5d-8aa3-825226375243" width="100%" title="Mobile view - Signup Page"/>
         </td>
     </tr>
     <tr>
@@ -93,10 +93,10 @@ Welcome to RateMyFlicks, a Reacj.js - based website that lets users explore and 
     </tr>
     <tr>
         <td>
-            <img src="https://github.com/user-attachments/assets/120fdd56-d887-4a47-856f-45ce43337130" width="100%" title="Desktop view - Logged in home page"/>
+            <img src="https://github.com/user-attachments/assets/81479644-abfb-42ae-906f-a1356c8e766e" width="100%" title="Desktop view - Logged in home page"/>
         </td>
         <td>
-            <img src="https://github.com/user-attachments/assets/1bb121d2-0aa1-469e-a852-52637af0d809" width="100%" title="Mobile view - Logged in home page"/>
+            <img src="https://github.com/user-attachments/assets/73dc1b6a-ddc5-40e9-9361-0e9041ed93fe" width="100%" title="Mobile view - Logged in home page"/>
         </td>
     </tr> 
     <tr>
@@ -104,32 +104,21 @@ Welcome to RateMyFlicks, a Reacj.js - based website that lets users explore and 
     </tr>
     <tr>
         <td>
-            <img src="https://github.com/user-attachments/assets/b29a5a8c-9a21-4a53-8255-542a8b687d37" width="100%" title="Desktop view - Logged in display page"/>
+            <img src="https://github.com/user-attachments/assets/35688c89-2512-449a-a476-8fbafc504dd6" width="100%" title="Desktop view - Logged in display page"/>
         </td>
         <td>
-            <img src="https://github.com/user-attachments/assets/992edb3e-bdcc-456f-8bd4-e69f0d28b4c6" width="100%" title="Mobile view - Logged in display page"/>
-        </td>
-    </tr> 
-    <tr>
-      <td colspan="3" style="text-align: left;font-weight: bold;">MyGames page</td>
-    </tr>
-    <tr>
-        <td>
-            <img src="https://github.com/user-attachments/assets/80a4b94b-80c7-4d4c-9064-d5c8e5b892ab" width="100%" title="Desktop view - MyGames page"/>
-        </td>
-        <td>
-            <img src="https://github.com/user-attachments/assets/ec959e27-0326-40e2-bf17-bf0cbf5f824a" width="100%" title="Mobile view - MyGames page"/>
+            <img src="https://github.com/user-attachments/assets/091ad7f6-6f76-4552-bfd6-e608ac10c464" width="100%" title="Mobile view - Logged in display page"/>
         </td>
     </tr> 
     <tr>
-      <td colspan="3" style="text-align: left;font-weight: bold;">Light Theme page</td>
+      <td colspan="3" style="text-align: left;font-weight: bold;">MyAnimeList page</td>
     </tr>
     <tr>
         <td>
-            <img src="https://github.com/user-attachments/assets/ff11e4b1-a97a-4e1d-a7ba-94747ba268c6" width="100%" title="Desktop view - Light theme"/>
+            <img src="https://github.com/user-attachments/assets/503b60ee-184f-4947-bebb-bfbbe2509e0c" width="100%" title="Desktop view - MyGames page"/>
         </td>
         <td>
-            <img src="https://github.com/user-attachments/assets/0284e594-bc99-45f1-9e4a-e11f9fc1e51d" width="100%" title="Mobile view - Light theme"/>
+            <img src="https://github.com/user-attachments/assets/becd24b9-d2ad-4b08-99de-d9ba2335dc21" width="100%" title="Mobile view - MyGames page"/>
         </td>
     </tr> 
 </table>
