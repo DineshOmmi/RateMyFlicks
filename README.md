@@ -60,7 +60,7 @@ Welcome to RateMyFlicks, a Reacj.js - based website that lets users explore and 
     </tr>
     <tr>
         <td>
-            <img src="https://github.com/user-attachments/assets/f1915e68-4111-4493-8049-4f1ae5e085d6" width="100%" title="Desktop view - Home Page"/>
+            <img src="https://github.com/user-attachments/assets/f27f6b29-0059-414a-8619-80383c9c6655" width="100%" title="Desktop view - Home Page"/>
         </td>
         <td>
             <img src="https://github.com/user-attachments/assets/781c3fb0-f27e-4913-82ec-93d3509ce575" width="100%" title="Mobile view - Home Page"/>
