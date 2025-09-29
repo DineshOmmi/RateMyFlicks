@@ -8,32 +8,29 @@ import { useAuth } from "./context/AuthContext";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  
-  const [error,SetError] = useState(null);
-  const [loading,setLoading] = useState(false);
+  const [error, SetError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const emailRef = useRef();
   const passwordRef = useRef();
-  const navigate = useNavigate()
-  const {Login} = useAuth()
+  const navigate = useNavigate();
+  const { Login } = useAuth();
 
-  const handleSubmit = async(e) => {
-
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     setLoading(true);
-    try{
-      SetError(null)
-      await Login(email,password)
-      if(!error){
-        navigate('/home')
+    try {
+      SetError(null);
+      await Login(email, password);
+      if (!error) {
+        navigate("/home");
       }
-    }catch(error){
-      SetError("Failed To Sign In")
+    } catch (error) {
+      SetError("Failed To Sign In");
     }
     setLoading(false);
-
-  }
+  };
   return (
     <div className="w-screen md:h-screen h-[93vh] flex flex-row justify-center items-center bg-secondary">
       <form
@@ -50,28 +47,35 @@ const Login = () => {
             Login to RateMyFlicks
           </h1>
         </div>
-        {
-          error && (<div className="text-center p-2 rounded-md bg-red-200 text-red-700">{error}</div>)
-        }
+        {error && (
+          <div className="text-center p-2 rounded-md bg-red-200 text-red-700">
+            {error}
+          </div>
+        )}
         <input
           type="text"
           className="outline-none rounded-md bg-transparent border-2 p-1 text-xl border-[#adb5bd]"
-          placeholder="Email"
+          // placeholder="RateMyFlicks@gmail.com"
+          defaultValue="RateMyFlicks@gmail.com"
           ref={emailRef}
         />
         <input
           type="password"
           className="outline-none rounded-md bg-transparent border-2 p-1 text-xl border-[#adb5bd]"
-          placeholder="Password"
+          // placeholder="123456"
+          defaultValue="123456"
           ref={passwordRef}
         />
         <div className="w-full text-center cursor-pointer text-sm">
           <span className="text-[#0171D3]">Forget Password ?</span>
         </div>
-        <button className="p-2 bg-[#0171D3] rounded-md text-primary" disabled={loading}>
-            {loading ? "Loging In ..." : "Login"}
+        <button
+          className="p-2 bg-[#0171D3] rounded-md text-primary"
+          disabled={loading}
+        >
+          {loading ? "Loging In ..." : "Login"}
         </button>
-        
+
         <div className="w-full flex flex-row justify-center items-center space-x-2">
           <hr className="size-1/2 border-[#adb5bd]" />
           <p className="">or</p>
@@ -87,7 +91,9 @@ const Login = () => {
         </div>
         <div className="text-sm text-center">
           Don&#39;t have an account?
-          <span className="text-[#0171D3] cursor-pointer"><Link to="/SignUp">Signup</Link></span>
+          <span className="text-[#0171D3] cursor-pointer">
+            <Link to="/SignUp">Signup</Link>
+          </span>
         </div>
       </form>
     </div>
